@@ -1,0 +1,95 @@
+{
+  // Debug configurations. Pick one in the Run and Debug panel (Ctrl+Shift+D), then press F5.
+  //
+  // "C:" configurations stop at breakpoints in src\*.c (auth.c, sefs.c, ...).
+  //   They run the base Python 3.12 directly, because .venv\Scripts\python.exe is only a
+  //   launcher that starts Python as a child process, which the C debugger would not follow.
+  //   PYTHONPATH points at the venv so pytest and the other packages are still found.
+  // "Python:" configurations stop at breakpoints in .py files.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C: debug auth.c (interactive menu)",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "C:/Users/DELL USER/AppData/Local/Programs/Python/Python312/python.exe",
+      "args": ["demos/auth_interactive.py"],
+      "cwd": "${workspaceFolder}",
+      "environment": [{ "name": "PYTHONPATH", "value": "${workspaceFolder}/.venv/Lib/site-packages" }],
+      "console": "integratedTerminal",
+      "preLaunchTask": "build sefs (Debug)"
+    },
+    {
+      "name": "C: debug auth.c (scripted demo)",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "C:/Users/DELL USER/AppData/Local/Programs/Python/Python312/python.exe",
+      "args": ["demos/demo_auth.py"],
+      "cwd": "${workspaceFolder}",
+      "environment": [{ "name": "PYTHONPATH", "value": "${workspaceFolder}/.venv/Lib/site-packages" }],
+      "console": "integratedTerminal",
+      "preLaunchTask": "build sefs (Debug)"
+    },
+    {
+      "name": "C: debug SEFS via acceptance tests",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "C:/Users/DELL USER/AppData/Local/Programs/Python/Python312/python.exe",
+      "args": ["-m", "pytest", "tests/acceptance", "-v", "-p", "no:cacheprovider"],
+      "cwd": "${workspaceFolder}",
+      "environment": [{ "name": "PYTHONPATH", "value": "${workspaceFolder}/.venv/Lib/site-packages" }],
+      "console": "integratedTerminal",
+      "preLaunchTask": "build sefs (Debug)"
+    },
+    {
+      "name": "C: debug SEFS via one test (type its name)",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "C:/Users/DELL USER/AppData/Local/Programs/Python/Python312/python.exe",
+      "args": ["-m", "pytest", "tests", "-v", "-p", "no:cacheprovider", "-k", "${input:testName}"],
+      "cwd": "${workspaceFolder}",
+      "environment": [{ "name": "PYTHONPATH", "value": "${workspaceFolder}/.venv/Lib/site-packages" }],
+      "console": "integratedTerminal",
+      "preLaunchTask": "build sefs (Debug)"
+    },
+    {
+      "name": "Python: auth interactive menu",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/demos/auth_interactive.py",
+      "python": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Python: current file",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "python": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Python: pytest current test file",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["${file}", "-v", "-p", "no:cacheprovider"],
+      "python": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    }
+  ],
+  "inputs": [
+    {
+      "id": "testName",
+      "type": "promptString",
+      "description": "Test name or part of it (pytest -k), e.g. register, tampered, three_chunk",
+      "default": "register"
+    }
+  ]
+}

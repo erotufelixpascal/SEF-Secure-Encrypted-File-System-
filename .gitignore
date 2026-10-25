@@ -1,0 +1,23 @@
+# keys, credentials and generated data
+master.key
+*.key
+passwd*
+*.meta
+chunks/
+masterlist
+*.tmp
+
+# build output
+build/
+build-asan/
+*.pdb
+cov_*/
+cov_*.xml
+
+# python
+.venv/
+__pycache__/
+.pytest_cache/
+
+# seeded faults stay out of the shared repo until Step 10 (keep them encrypted or with the fault author)
+mutants/*.patch

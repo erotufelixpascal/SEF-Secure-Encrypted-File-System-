@@ -1,0 +1,15 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build sefs (Debug)",
+      "detail": "Recompile src\\*.c into build\\Debug\\sefs.dll",
+      "type": "process",
+      "command": "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cmake.exe",
+      "args": ["--build", "build", "--config", "Debug"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}

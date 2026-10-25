@@ -1,0 +1,16 @@
+{
+  "cmake.configureSettings": {
+    "CMAKE_TOOLCHAIN_FILE": "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
+  },
+  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+  "C_Cpp.default.includePath": [
+    "${workspaceFolder}/src",
+    "C:/vcpkg/installed/x64-windows/include"
+  ],
+  "C_Cpp.default.defines": ["SEFS_EXPORTS", "_CRT_SECURE_NO_WARNINGS"],
+  "C_Cpp.default.cStandard": "c11",
+  "C_Cpp.default.intelliSenseMode": "windows-msvc-x64",
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": ["tests"]
+}

@@ -1,0 +1,2 @@
+# Keep bytes exactly as written so LF-only files and fault patches apply on every platform
+* -text
